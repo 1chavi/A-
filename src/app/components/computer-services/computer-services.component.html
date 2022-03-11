@@ -1,0 +1,174 @@
+<div>
+  <h1>Create/Update Virtual Machine</h1>
+  <br>
+  <form [formGroup]="virtualMachine" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-row">
+      <div class="basis-1/2">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput value="" formControlName="Name" />
+        </mat-form-field>
+        <div
+          class="text-rose-500 text-sm"
+          *ngIf="
+            virtualMachine.controls['Name'].invalid &&
+            virtualMachine.controls['Name'].touched
+          "
+        >
+          Please Fill Name
+        </div>
+      </div>
+      <div class="basis-1/2">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Region</mat-label>
+          <textarea matInput formControlName="Region"></textarea>
+        </mat-form-field>
+        <div
+          class="text-rose-500 text-sm"
+          *ngIf="
+            virtualMachine.controls['Region'].invalid &&
+            virtualMachine.controls['Region'].touched
+          "
+        >
+          Please Fill Region
+        </div>
+      </div>
+      <div class="basis-1/2">
+        <mat-form-field appearance="fill">
+          <mat-label>Machine Family</mat-label>
+          <mat-select formControlName="MachineFamily">
+            <mat-option *ngFor="let item of type" [value]="item.name">
+              {{ item.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div
+          class="text-rose-500 text-sm"
+          *ngIf="
+            virtualMachine.controls['MachineFamily'].invalid &&
+            virtualMachine.controls['MachineFamily'].touched
+          "
+        >
+          Please Select Family
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-row">
+      <div class="basis-1/2">
+        <mat-form-field appearance="fill">
+          <mat-label>CPU's</mat-label>
+          <mat-select formControlName="Cpu">
+            <mat-option *ngFor="let item of cpu" [value]="item.number">
+              {{ item.number }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div
+          class="text-rose-500 text-sm"
+          *ngIf="
+            virtualMachine.controls['Cpu'].invalid &&
+            virtualMachine.controls['Cpu'].touched
+          "
+        >
+          Please Select No of CPU's
+        </div>
+      </div>
+      <div class="basis-1/2">
+        <mat-form-field appearance="fill">
+          <mat-label>Memory</mat-label>
+          <mat-select formControlName="Memory">
+            <mat-option *ngFor="let item of cpu" [value]="item.number">
+              {{ item.number }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div
+          class="text-rose-500 text-sm"
+          *ngIf="
+            virtualMachine.controls['Memory'].invalid &&
+            virtualMachine.controls['Memory'].touched
+          "
+        >
+          Please Select Memory Size
+        </div>
+      </div>
+      <div class="basis-1/2">
+        <mat-form-field appearance="fill">
+          <mat-label>Boot Disk Size</mat-label>
+          <mat-select formControlName="BootDiskSize">
+            <mat-option *ngFor="let item of bootSize" [value]="item.number">
+              {{ item.number }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div
+          class="text-rose-500 text-sm"
+          *ngIf="
+            virtualMachine.controls['BootDiskSize'].invalid &&
+            virtualMachine.controls['BootDiskSize'].touched
+          "
+        >
+          Please Select Boot Size
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-row">
+      <div class="basis-1/4">
+        <mat-form-field appearance="fill">
+          <mat-label>Boot Disk OS</mat-label>
+          <mat-select formControlName="BootDiskOS">
+            <mat-option *ngFor="let item of bootOS" [value]="item.name">
+              {{ item.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div
+          class="text-rose-500 text-sm"
+          *ngIf="
+            virtualMachine.controls['BootDiskOS'].invalid &&
+            virtualMachine.controls['BootDiskOS'].touched
+          "
+        >
+          Please Select Boot OS
+        </div>
+      </div>
+      <div class="mx-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Allowed Traffic</mat-label>
+          <mat-select formControlName="AllowedTraffic">
+            <mat-option *ngFor="let item of traffic" [value]="item.name">
+              {{ item.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div
+          class="text-rose-500 text-sm"
+          *ngIf="
+            virtualMachine.controls['AllowedTraffic'].invalid &&
+            virtualMachine.controls['AllowedTraffic'].touched
+          "
+        >
+          Please Select Allowed Traffic
+        </div>
+      </div>
+
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="virtualMachine.invalid"
+      [mat-dialog-close]="virtualMachine.value"
+    >
+      Submit
+    </button>
+    <button
+      type="reset"
+      mat-raised-button
+      color="primary"
+      style="margin-left: 10px"
+    >
+      Reset
+    </button>
+  </form>
+</div>

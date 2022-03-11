@@ -1,0 +1,48 @@
+<div>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Compute Services </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ul>
+        <li>
+          <button routerLink="/virtual-machine-table" class="py-2">Virtual Machines</button>
+        </li>
+        <li>
+          <button routerLink="/serverless-compute-table" class="py-2">Serverless Compute</button>
+        </li>
+        <li>
+          <button routerLink="/kubernetes-engines-table" class="py-2">Kubernetes Engines</button>
+        </li>
+      </ul>
+      <div class="my-3"> 
+        <button mat-raised-button color="warn" style="width: 12em">
+          Add Cloud Service
+        </button>
+      </div>
+      <!-- tw -->
+    </mat-expansion-panel>
+    <ng-container *ngFor="let item of categories">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ item.label }} </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul>
+          <li *ngFor="let service of item.services">
+            <button class="py-2">{{ service.name }}</button>
+          </li>
+        </ul>
+        <div class="my-3">
+          <button mat-raised-button color="warn" style="width: 12em">
+            Add Cloud Service
+          </button>
+        </div>
+      </mat-expansion-panel>
+    </ng-container>
+  </mat-accordion>
+  <div class="my-3">
+    <button mat-raised-button color="primary" style="width: 13em">
+      Add Cloud Category
+    </button>
+  </div>
+</div>

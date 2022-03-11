@@ -1,0 +1,32 @@
+    <table mat-table [dataSource]="categories[0].services[0].details">
+      <ng-container
+        [matColumnDef]="col"
+        *ngFor="let col of categories[0].services[0].displayedCol"
+      >
+        <th mat-header-cell *matHeaderCellDef>
+          {{ col }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="btn-edit" *ngIf="col === 'Actions'">
+            <button mat-raised-button color="accent" (click)="editRow(element, 0 , 0)">Edit</button>
+            <button mat-raised-button color="warn" (click)="deleteRow(element, 0 , 0)" style="margin-left: 2px">
+              Delete
+            </button>
+          </div>
+          <span>
+            {{ element[col] }}
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="categories[0].services[0].displayedCol"></tr>
+      <tr mat-row *matRowDef="let row; columns: categories[0].services[0].displayedCol"></tr>
+    </table>
+    <div
+      *ngIf="categories[0].services[0].length === 3"
+    >
+      <h2 class="headline mb-20 text-center">
+        No Active Service Available
+      </h2>
+    </div>
+    <div class="flex flex-row justify-center my-5" (click)="addRow(0 , 0)"><button mat-raised-button color="primary">Add</button></div>

@@ -1,0 +1,14 @@
+<app-toolbar></app-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" opened mode="side" >
+        <app-side-nav-inside></app-side-nav-inside>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
